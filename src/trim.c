@@ -32,7 +32,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *ltirim(char *src, const char **wsps)
+char *ltrim(char *src, const char **wsps)
 {
 	int isFind = 0;
 	do {
@@ -50,7 +50,7 @@ char *ltirim(char *src, const char **wsps)
 	return src;
 }
 
-char *rtirim(char *src, const char **wsps)
+char *rtrim(char *src, const char **wsps)
 {
 	int isFind = 0;
 	char *pos = NULL;

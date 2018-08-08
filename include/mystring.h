@@ -33,8 +33,8 @@ extern "C"
 {
 #endif
 
-char *ltirim(char *, const char **);
-char *rtirim(char *, const char **);
+char *ltrim(char *, const char **);
+char *rtrim(char *, const char **);
 
 #ifdef __cplusplus
 }
