@@ -29,6 +29,7 @@
  */
 
 #include <mystring.h>
+#include <stdlib.h>
 #include <string.h>
 
 char *ltirim(char *src, const char **wsps)
@@ -41,6 +42,27 @@ char *ltirim(char *src, const char **wsps)
 			size_t len = strlen(*wsp);
 			while (memcmp((void *)src, (void *)*wsp, len) == 0) {
 				src += len;
+				isFind = 1;
+			}
+			wsp++;
+		}
+	} while (isFind);
+	return src;
+}
+
+char *rtirim(char *src, const char **wsps)
+{
+	int isFind = 0;
+	char *pos = NULL;
+	do {
+		isFind = 0;
+		char **wsp = (char **)wsps;
+		while(*wsp) {
+			size_t len = strlen(*wsp);
+			pos = src + strlen(src) - len;
+			while (memcmp((void *)pos, (void *)*wsp, len) == 0) {
+				*pos = 0x00;
+				pos -= len;
 				isFind = 1;
 			}
 			wsp++;

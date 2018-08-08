@@ -26,12 +26,12 @@
 
 #include <mystring.h>
 
-const char *wsps[] = {" ", "\t", "\x0d", "\x0a", NULL};
+const char *wsps[] = {" ", "\t", "\x0d", "\x0a", "　", NULL};
+const char *src = "ABC abc \t012\n\r!#$";
 
-TEST_CASE("Left trim.", "[mystring]")
+TEST_CASE("Left trim.", "[my_string]")
 {
 	char chk[256];
-	char *src = "ABC abc \t012\n\r!#$";
 	TEST_ASSERT_EQUAL_STRING(ltirim(src, wsps), src);
 
 	strcpy(chk, " ");
@@ -66,15 +66,81 @@ TEST_CASE("Left trim.", "[mystring]")
 	strcat(chk, src);
 	TEST_ASSERT_EQUAL_STRING(ltirim(chk, wsps), src);
 
-	strcpy(chk, " \t\n\r");
+	strcpy(chk, "　");
 	strcat(chk, src);
 	TEST_ASSERT_EQUAL_STRING(ltirim(chk, wsps), src);
 
-	strcpy(chk, " \t\n\r \t\n\r");
+	strcpy(chk, "　　");
 	strcat(chk, src);
 	TEST_ASSERT_EQUAL_STRING(ltirim(chk, wsps), src);
 
-	strcpy(chk, "  \t\t\n\n\r\r");
+	strcpy(chk, " \t\n\r　");
 	strcat(chk, src);
 	TEST_ASSERT_EQUAL_STRING(ltirim(chk, wsps), src);
+
+	strcpy(chk, " \t\n\r　 \t\n\r　");
+	strcat(chk, src);
+	TEST_ASSERT_EQUAL_STRING(ltirim(chk, wsps), src);
+
+	strcpy(chk, "  \t\t\n\n\r\r　　");
+	strcat(chk, src);
+	TEST_ASSERT_EQUAL_STRING(ltirim(chk, wsps), src);
+}
+
+TEST_CASE("Right trim.", "[my_string]")
+{
+	char chk[256];
+	TEST_ASSERT_EQUAL_STRING(rtirim(src, wsps), src);
+
+	strcpy(chk, src);
+	strcat(chk, " ");
+	TEST_ASSERT_EQUAL_STRING(rtirim(chk, wsps), src);
+
+	strcpy(chk, src);
+	strcat(chk, "  ");
+	TEST_ASSERT_EQUAL_STRING(rtirim(chk, wsps), src);
+
+	strcpy(chk, src);
+	strcat(chk, "\t");
+	TEST_ASSERT_EQUAL_STRING(rtirim(chk, wsps), src);
+
+	strcpy(chk, src);
+	strcat(chk, "\t\t");
+	TEST_ASSERT_EQUAL_STRING(rtirim(chk, wsps), src);
+
+	strcpy(chk, src);
+	strcat(chk, "\n");
+	TEST_ASSERT_EQUAL_STRING(rtirim(chk, wsps), src);
+
+	strcpy(chk, src);
+	strcat(chk, "\n\n");
+	TEST_ASSERT_EQUAL_STRING(rtirim(chk, wsps), src);
+
+	strcpy(chk, src);
+	strcat(chk, "\r");
+	TEST_ASSERT_EQUAL_STRING(rtirim(chk, wsps), src);
+
+	strcpy(chk, src);
+	strcat(chk, "\r\r");
+	TEST_ASSERT_EQUAL_STRING(rtirim(chk, wsps), src);
+
+	strcpy(chk, src);
+	strcat(chk, "　");
+	TEST_ASSERT_EQUAL_STRING(rtirim(chk, wsps), src);
+
+	strcpy(chk, src);
+	strcat(chk, "　　");
+	TEST_ASSERT_EQUAL_STRING(rtirim(chk, wsps), src);
+
+	strcpy(chk, src);
+	strcat(chk, " \t\n\r　");
+	TEST_ASSERT_EQUAL_STRING(rtirim(chk, wsps), src);
+
+	strcpy(chk, src);
+	strcat(chk, " \t\n\r　 \t\n\r　");
+	TEST_ASSERT_EQUAL_STRING(rtirim(chk, wsps), src);
+
+	strcpy(chk, src);
+	strcat(chk, "  \t\t\n\n\r\r　　");
+	TEST_ASSERT_EQUAL_STRING(rtirim(chk, wsps), src);
 }
