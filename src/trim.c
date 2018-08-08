@@ -70,3 +70,8 @@ char *rtrim(char *src, const char **wsps)
 	} while (isFind);
 	return src;
 }
+
+char *trim(char *src, const char **wsps)
+{
+	return ltrim(rtrim(src, wsps), wsps);
+}
