@@ -35,6 +35,7 @@ extern "C"
 
 char *ltrim(char *, const char **);
 char *rtrim(char *, const char **);
+char *trim(char *, const char **);
 
 #ifdef __cplusplus
 }

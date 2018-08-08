@@ -144,3 +144,74 @@ TEST_CASE("Right trim.", "[my_string]")
 	strcat(chk, "  \t\t\n\n\r\r　　");
 	TEST_ASSERT_EQUAL_STRING(rtrim(chk, wsps), src);
 }
+
+TEST_CASE("Left and right trim.", "[my_string]")
+{
+	char chk[256];
+	TEST_ASSERT_EQUAL_STRING(trim(src, wsps), src);
+
+	strcpy(chk, " ");
+	strcat(chk, src);
+	strcat(chk, " ");
+	TEST_ASSERT_EQUAL_STRING(trim(chk, wsps), src);
+
+	strcpy(chk, "  ");
+	strcat(chk, src);
+	strcat(chk, "  ");
+	TEST_ASSERT_EQUAL_STRING(trim(chk, wsps), src);
+
+	strcpy(chk, "\t");
+	strcat(chk, src);
+	strcat(chk, "\t");
+	TEST_ASSERT_EQUAL_STRING(trim(chk, wsps), src);
+
+	strcpy(chk, "\t\t");
+	strcat(chk, src);
+	strcat(chk, "\t\t");
+	TEST_ASSERT_EQUAL_STRING(trim(chk, wsps), src);
+
+	strcpy(chk, "\n");
+	strcat(chk, src);
+	strcat(chk, "\n");
+	TEST_ASSERT_EQUAL_STRING(trim(chk, wsps), src);
+
+	strcpy(chk, "\n\n");
+	strcat(chk, src);
+	strcat(chk, "\n\n");
+	TEST_ASSERT_EQUAL_STRING(trim(chk, wsps), src);
+
+	strcpy(chk, "\r");
+	strcat(chk, src);
+	strcat(chk, "\r");
+	TEST_ASSERT_EQUAL_STRING(trim(chk, wsps), src);
+
+	strcpy(chk, "\r\r");
+	strcat(chk, src);
+	strcat(chk, "\r\r");
+	TEST_ASSERT_EQUAL_STRING(trim(chk, wsps), src);
+
+	strcpy(chk, "　");
+	strcat(chk, src);
+	strcat(chk, "　");
+	TEST_ASSERT_EQUAL_STRING(trim(chk, wsps), src);
+
+	strcpy(chk, "　　");
+	strcat(chk, src);
+	strcat(chk, "　　");
+	TEST_ASSERT_EQUAL_STRING(trim(chk, wsps), src);
+
+	strcpy(chk, " \t\n\r　");
+	strcat(chk, src);
+	strcat(chk, " \t\n\r　");
+	TEST_ASSERT_EQUAL_STRING(trim(chk, wsps), src);
+
+	strcpy(chk, " \t\n\r　 \t\n\r　");
+	strcat(chk, src);
+	strcat(chk, " \t\n\r　 \t\n\r　");
+	TEST_ASSERT_EQUAL_STRING(trim(chk, wsps), src);
+
+	strcpy(chk, "  \t\t\n\n\r\r　　");
+	strcat(chk, src);
+	strcat(chk, "  \t\t\n\n\r\r　　");
+	TEST_ASSERT_EQUAL_STRING(trim(chk, wsps), src);
+}
