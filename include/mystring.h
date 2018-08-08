@@ -34,6 +34,7 @@ extern "C"
 #endif
 
 char *ltirim(char *, const char **);
+char *rtirim(char *, const char **);
 
 #ifdef __cplusplus
 }
