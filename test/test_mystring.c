@@ -85,6 +85,12 @@ TEST_CASE("Left trim.", "[my_string]")
 	strcpy(chk, "  \t\t\n\n\r\r　　");
 	strcat(chk, src);
 	TEST_ASSERT_EQUAL_STRING(ltrim(chk, wsps), src);
+
+	TEST_ASSERT_NULL(ltrim(NULL, wsps));
+
+	TEST_ASSERT_NULL(ltrim(src, NULL));
+
+	TEST_ASSERT_NULL(ltrim(NULL, NULL));
 }
 
 TEST_CASE("Right trim.", "[my_string]")
@@ -143,6 +149,12 @@ TEST_CASE("Right trim.", "[my_string]")
 	strcpy(chk, src);
 	strcat(chk, "  \t\t\n\n\r\r　　");
 	TEST_ASSERT_EQUAL_STRING(rtrim(chk, wsps), src);
+
+	TEST_ASSERT_NULL(rtrim(NULL, wsps));
+
+	TEST_ASSERT_NULL(rtrim(src, NULL));
+
+	TEST_ASSERT_NULL(rtrim(NULL, NULL));
 }
 
 TEST_CASE("Left and right trim.", "[my_string]")
@@ -214,4 +226,10 @@ TEST_CASE("Left and right trim.", "[my_string]")
 	strcat(chk, src);
 	strcat(chk, "  \t\t\n\n\r\r　　");
 	TEST_ASSERT_EQUAL_STRING(trim(chk, wsps), src);
+
+	TEST_ASSERT_NULL(trim(NULL, wsps));
+
+	TEST_ASSERT_NULL(trim(src, NULL));
+
+	TEST_ASSERT_NULL(trim(NULL, NULL));
 }

@@ -34,41 +34,51 @@
 
 char *ltrim(char *src, const char **wsps)
 {
-	int isFind = 0;
-	do {
-		isFind = 0;
-		char **wsp = (char **)wsps;
-		while(*wsp) {
-			size_t len = strlen(*wsp);
-			while (memcmp((void *)src, (void *)*wsp, len) == 0) {
-				src += len;
-				isFind = 1;
+	if (src && wsps) {
+		int isFind = 0;
+		do {
+			isFind = 0;
+			char **wsp = (char **)wsps;
+			while(*wsp) {
+				size_t len = strlen(*wsp);
+				while (memcmp((void *)src, (void *)*wsp, len) == 0) {
+					src += len;
+					isFind = 1;
+				}
+				wsp++;
 			}
-			wsp++;
-		}
-	} while (isFind);
-	return src;
+		} while (isFind);
+		return src;
+	}
+	else {
+		return NULL;
+	}
 }
 
 char *rtrim(char *src, const char **wsps)
 {
-	int isFind = 0;
-	char *pos = NULL;
-	do {
-		isFind = 0;
-		char **wsp = (char **)wsps;
-		while(*wsp) {
-			size_t len = strlen(*wsp);
-			pos = src + strlen(src) - len;
-			while (memcmp((void *)pos, (void *)*wsp, len) == 0) {
-				*pos = 0x00;
-				pos -= len;
-				isFind = 1;
+	if (src && wsps) {
+		int isFind = 0;
+		char *pos = NULL;
+		do {
+			isFind = 0;
+			char **wsp = (char **)wsps;
+			while(*wsp) {
+				size_t len = strlen(*wsp);
+				pos = src + strlen(src) - len;
+				while (memcmp((void *)pos, (void *)*wsp, len) == 0) {
+					*pos = 0x00;
+					pos -= len;
+					isFind = 1;
+				}
+				wsp++;
 			}
-			wsp++;
-		}
-	} while (isFind);
-	return src;
+		} while (isFind);
+		return src;
+	}
+	else {
+		return NULL;
+	}
 }
 
 char *trim(char *src, const char **wsps)
