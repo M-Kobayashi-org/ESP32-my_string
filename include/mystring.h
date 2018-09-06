@@ -28,6 +28,9 @@
  *
  */
 
+#ifndef COMPONENTS_MY_STRING_MYSTRING_H_
+#define COMPONENTS_MY_STRING_MYSTRING_H_
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -40,3 +43,5 @@ char *trim(char *, const char **);
 #ifdef __cplusplus
 }
 #endif
+
+#endif /* COMPONENTS_MY_STRING_MYSTRING_H_ */
