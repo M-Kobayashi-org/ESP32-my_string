@@ -28,6 +28,8 @@
 
 const char *wsps[] = {" ", "\t", "\x0d", "\x0a", "　", NULL};
 const char *src = "ABC abc \t012\n\r!#$";
+const char *upc = "ABC ABC \t012\n\r!#$";
+const char *lwc = "abc abc \t012\n\r!#$";
 
 TEST_CASE("Left trim.", "[my_string]")
 {
@@ -232,4 +234,24 @@ TEST_CASE("Left and right trim.", "[my_string]")
 	TEST_ASSERT_NULL(trim(src, NULL));
 
 	TEST_ASSERT_NULL(trim(NULL, NULL));
+}
+
+TEST_CASE("uppercase letter.", "[my_string]")
+{
+	char chk[256];
+
+	TEST_ASSERT_NULL(uppercase(NULL));
+
+	strcpy(chk, src);
+	TEST_ASSERT_EQUAL_STRING(uppercase(chk), upc);
+}
+
+TEST_CASE("lowercase letter.", "[my_string]")
+{
+	char chk[256];
+
+	TEST_ASSERT_NULL(lowercase(NULL));
+
+	strcpy(chk, src);
+	TEST_ASSERT_EQUAL_STRING(lowercase(chk), lwc);
 }
