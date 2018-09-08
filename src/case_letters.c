@@ -1,7 +1,7 @@
 /*
  * Guess of the original plain text Gets a difficult hash value.
  *
- *      Create 2018-07-22 By Masato Kobayashi
+ *      Create 2018-09-08 By Masato Kobayashi
  *
  *
  *   Copyright (C) 2018 Masato Kobayashi. All rights reserved.
@@ -28,23 +28,32 @@
  *
  */
 
-#ifndef COMPONENTS_MY_STRING_MYSTRING_H_
-#define COMPONENTS_MY_STRING_MYSTRING_H_
-
-#ifdef __cplusplus
-extern "C"
+char *uppercase(char *buf)
 {
-#endif
+	char *ptr = buf;
+	if (ptr) {
+		while (*ptr) {
+			if (*ptr >= 'a' && 'z' >= *ptr) {
+				*ptr &= 0xdf;
+			}
+			ptr++;
+		}
+	}
 
-char *ltrim(char *, const char **);
-char *rtrim(char *, const char **);
-char *trim(char *, const char **);
-
-char *uppercase(char *);
-char *lowercase(char *);
-
-#ifdef __cplusplus
+	return buf;
 }
-#endif
 
-#endif /* COMPONENTS_MY_STRING_MYSTRING_H_ */
+char *lowercase(char *buf)
+{
+	char *ptr = buf;
+	if (ptr) {
+		while (*ptr) {
+			if (*ptr >= 'A' && 'Z' >= *ptr) {
+				*ptr |= 0x20;
+			}
+			ptr++;
+		}
+	}
+
+	return buf;
+}
