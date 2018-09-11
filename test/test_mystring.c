@@ -255,3 +255,18 @@ TEST_CASE("lowercase letter.", "[my_string]")
 	strcpy(chk, src);
 	TEST_ASSERT_EQUAL_STRING(lowercase(chk), lwc);
 }
+
+TEST_CASE("memory dump.", "[my_string]")
+{
+	dump(stdout, src, strlen(src));
+	dump(stdout, wsps, sizeof(wsps));
+	dump(stdout, wsps[0], strlen(wsps[0]) + 1);
+	dump(stdout, wsps[1], strlen(wsps[1]) + 1);
+	dump(stdout, wsps[2], strlen(wsps[2]) + 1);
+	dump(stdout, wsps[3], strlen(wsps[3]) + 1);
+	dump(stdout, wsps[4], strlen(wsps[4]) + 1);
+	dump(stdout, wsps[5], 0);
+	dump(stdout, wsps[5], 16);
+	dump(stdout, wsps[0], 16);
+	dump(stdout, wsps[1], 0);
+}

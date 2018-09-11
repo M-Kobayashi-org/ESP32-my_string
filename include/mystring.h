@@ -31,6 +31,8 @@
 #ifndef COMPONENTS_MY_STRING_MYSTRING_H_
 #define COMPONENTS_MY_STRING_MYSTRING_H_
 
+#include <stdio.h>
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -42,6 +44,8 @@ char *trim(char *, const char **);
 
 char *uppercase(char *);
 char *lowercase(char *);
+
+void dump(FILE *, const void *, size_t);
 
 #ifdef __cplusplus
 }

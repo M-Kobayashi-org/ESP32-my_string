@@ -10,6 +10,7 @@ Provides functions related to character strings.
 * [rtrim](#rtrim)
 * [uppercase](#uppercase)
 * [lowercase](#lowercase)
+* [dump](#dump)
 
 ## Reference
 ### trim
@@ -102,3 +103,19 @@ Convert all alphabets to lowercase.
 
 * Return value  
 A string with all alphabets lower case characters.  
+
+### dump
+* Declaration  
+```c
+void dump(FILE *file, const void *buf, size_t len);  
+```
+
+* Description  
+Output a memory dump of the specified address.  
+* Argument  
+
+|Argument|Description|  
+|:--|:--|  
+|file|Specify the file pointer of the output destination.<br>To output to standard output, specify "stdout".|  
+|buf|Specify the address of the memory whose contents you want to output.|  
+|len|Specify the number of bytes to be output.|  
